@@ -1,5 +1,4 @@
-// filepath: /Users/awf/Projects/clients/freearcs/fps-react-frontend/src/pages/ContactPage.jsx
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import { Button } from '../components/ui/button';
@@ -7,39 +6,36 @@ import { Input } from '../components/ui/input';
 import { Textarea } from '../components/ui/textarea';
 import { Label } from '../components/ui/label';
 import { Card, CardContent } from '../components/ui/card';
-import { Mail, Phone, MapPin, Send, Upload, CheckCircle, ChevronRight } from 'lucide-react';
+import { Send, CheckCircle, Briefcase, Mail, Phone, MapPin } from 'lucide-react';
 import SEO from '@/components/SEO';
+
+const SUBJECT_OPTIONS = [
+  { value: '', label: 'Sélectionnez un sujet' },
+  { value: 'Etude clinique', label: 'Étude clinique' },
+  { value: 'Representation Legale UE', label: 'Représentation Légale UE' },
+  { value: 'Formation', label: 'Formation' },
+  { value: 'Partenariat', label: 'Partenariat' },
+  { value: 'Autre', label: 'Autre' },
+];
 
 const ContactPage = () => {
   const { t } = useLanguage();
   const [searchParams] = useSearchParams();
   const [formData, setFormData] = useState({
-    firstName: '',
-    name: '',
-    company: '',
+    fullName: '',
     email: '',
+    organisation: '',
+    fonction: '',
     phone: '',
-    subject: '',
+    subject: searchParams.get('subject') || '',
     message: '',
-    file: null,
+    rgpdConsent: false,
   });
   const [submitted, setSubmitted] = useState(false);
 
-  useEffect(() => {
-    const subjectParam = searchParams.get('subject');
-    if (subjectParam) {
-      setFormData(prev => ({ ...prev, subject: subjectParam }));
-    }
-  }, [searchParams]);
-
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-  };
-
-  const handleFileChange = (e) => {
-    const file = e.target.files[0];
-    setFormData(prev => ({ ...prev, file }));
+    const { name, value, type, checked } = e.target;
+    setFormData(prev => ({ ...prev, [name]: type === 'checkbox' ? checked : value }));
   };
 
   const handleSubmit = (e) => {
@@ -50,7 +46,7 @@ const ContactPage = () => {
 
   if (submitted) {
     return (
-      <div className="min-h-screen bg-muted flex items-center justify-center" data-testid="contact-success">
+      <div className="min-h-screen bg-[#F9FAFD] flex items-center justify-center" data-testid="contact-success">
         <div className="max-w-lg mx-auto px-4 text-center">
           <div className="w-20 h-20 rounded-full bg-[#EAF5E1] flex items-center justify-center mx-auto mb-6">
             <CheckCircle className="w-10 h-10 text-[#2E9013]" />
@@ -71,7 +67,7 @@ const ContactPage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-muted" data-testid="contact-page">
+    <div className="min-h-screen bg-[#F9FAFD]" data-testid="contact-page">
       <SEO
         title={t('contact.metaTitle')}
         description={t('contact.metaDescription')}
@@ -84,7 +80,7 @@ const ContactPage = () => {
           className="absolute inset-0 bg-cover bg-bottom bg-no-repeat"
           style={{ backgroundImage: 'url(/assets/img/background-2.jpg)' }}
         />
-        <div className="absolute inset-0 bg-[#2B2B2B]/60" /> {/* Overlay */}
+        <div className="absolute inset-0 bg-[#2B2B2B]/60" />
 
         <div className="max-w-[1800px] mx-auto px-6 lg:px-12 xl:px-20 relative z-10">
           <div className="pt-24 pb-20 lg:pt-32 lg:pb-24">
@@ -93,132 +89,137 @@ const ContactPage = () => {
                 <h1 className="text-white text-3xl md:text-5xl lg:text-6xl font-bold mb-0 leading-none">
                   Contact
                 </h1>
-                <div className="mt-4 flex flex-col sm:flex-row sm:items-center justify-center gap-4 sm:gap-2">
-                  <div className="flex items-center justify-center gap-2 text-white/80 font-bold text-lg">
-                    <Link to="/" className="text-white hover:text-white/80 transition-colors">{t('nav.home')}</Link>
-                    <span className="text-white/60">/</span>
-                    <span className="text-white">Contact</span>
-                  </div>
-                  {/* <span className="hidden sm:inline-block text-white/40">|</span>
-                  <span className="text-[#2E9013] text-lg font-medium italic">
-                    {t('contact.intro')}
-                  </span> */}
+                <div className="mt-4 flex items-center justify-center gap-2 text-white/80 font-bold text-lg">
+                  <Link to="/" className="text-white hover:text-white/80 transition-colors">{t('nav.home')}</Link>
+                  <span className="text-white/60">/</span>
+                  <span className="text-white">Contact</span>
                 </div>
+                <p className="text-white/90 text-lg mt-4">
+                  Présentez-nous votre projet. Premier échange sous 48 heures.
+                </p>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ── Formulaire + Sidebar ── */}
-      <section className="py-20" data-testid="contact-form-section">
+      {/* ── Formulaire + Carrières ──────────────────────────────────────── */}
+      <section className="py-20 bg-[#F9FAFD]" data-testid="contact-form-section">
         <div className="max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-12 xl:px-20">
-          <div className="grid lg:grid-cols-3 gap-12">
+          <div className="flex flex-col lg:flex-row gap-12 items-start">
 
-            {/* Formulaire */}
-            <div className="lg:col-span-2">
+            {/* Formulaire (60%) */}
+            <div className="w-full lg:w-3/5">
               <Card className="shadow-xl">
                 <CardContent className="p-8">
-                  <form onSubmit={handleSubmit} className="space-y-6" data-testid="contact-form">
+                  <h2 className="text-xl font-bold text-[#573D4E] mb-6">Votre message</h2>
+                  <form onSubmit={handleSubmit} className="space-y-5" data-testid="contact-form">
 
-                    {/* Prénom + Nom */}
-                    <div className="grid md:grid-cols-2 gap-6">
-                      <div className="space-y-2">
-                        <Label htmlFor="firstName">Prénom *</Label>
-                        <Input
-                          id="firstName" name="firstName" type="text" required
-                          placeholder="Marie"
-                          value={formData.firstName} onChange={handleChange}
-                          className="border-gray-300 focus:border-[#2E9013] focus:ring-[#2E9013]"
-                          data-testid="contact-firstname-input"
-                        />
-                      </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="name">{t('contact.form.name')} *</Label>
-                        <Input
-                          id="name" name="name" type="text" required
-                          placeholder={t('contact.form.namePlaceholder')}
-                          value={formData.name} onChange={handleChange}
-                          className="border-gray-300 focus:border-[#2E9013] focus:ring-[#2E9013]"
-                          data-testid="contact-name-input"
-                        />
-                      </div>
-                    </div>
-
-                    {/* Email + Téléphone (obligatoire) */}
-                    <div className="grid md:grid-cols-2 gap-6">
-                      <div className="space-y-2">
-                        <Label htmlFor="email">{t('contact.form.email')} *</Label>
-                        <Input
-                          id="email" name="email" type="email" required
-                          placeholder={t('contact.form.emailPlaceholder')}
-                          value={formData.email} onChange={handleChange}
-                          className="border-gray-300 focus:border-[#2E9013] focus:ring-[#2E9013]"
-                          data-testid="contact-email-input"
-                        />
-                      </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="phone">{t('contact.form.phone')} *</Label>
-                        <Input
-                          id="phone" name="phone" type="tel" required
-                          placeholder={t('contact.form.phonePlaceholder')}
-                          value={formData.phone} onChange={handleChange}
-                          className="border-gray-300 focus:border-[#2E9013] focus:ring-[#2E9013]"
-                          data-testid="contact-phone-input"
-                        />
-                      </div>
-                    </div>
-
-                    {/* Entreprise */}
+                    {/* Nom et prénom */}
                     <div className="space-y-2">
-                      <Label htmlFor="company">{t('contact.form.company')}</Label>
+                      <Label htmlFor="fullName">Nom et prénom *</Label>
                       <Input
-                        id="company" name="company" type="text"
-                        placeholder={t('contact.form.companyPlaceholder')}
-                        value={formData.company} onChange={handleChange}
+                        id="fullName" name="fullName" type="text" required
+                        placeholder="Nadège KAMBOU"
+                        value={formData.fullName} onChange={handleChange}
                         className="border-gray-300 focus:border-[#2E9013] focus:ring-[#2E9013]"
-                        data-testid="contact-company-input"
+                        data-testid="contact-fullname-input"
                       />
                     </div>
 
-                    {/* Sujet — champ libre */}
+                    {/* Email professionnel */}
                     <div className="space-y-2">
-                      <Label htmlFor="subject">{t('contact.form.subject')} *</Label>
+                      <Label htmlFor="email">Adresse e-mail professionnelle *</Label>
                       <Input
-                        id="subject" name="subject" type="text" required
-                        placeholder="Ex : Projet Phase I, représentation légale UE, partenariat..."
+                        id="email" name="email" type="email" required
+                        placeholder="nom@organisation.com"
+                        value={formData.email} onChange={handleChange}
+                        className="border-gray-300 focus:border-[#2E9013] focus:ring-[#2E9013]"
+                        data-testid="contact-email-input"
+                      />
+                    </div>
+
+                    {/* Organisation */}
+                    <div className="space-y-2">
+                      <Label htmlFor="organisation">Organisation *</Label>
+                      <Input
+                        id="organisation" name="organisation" type="text" required
+                        placeholder="Biotech / Laboratoire / Académique..."
+                        value={formData.organisation} onChange={handleChange}
+                        className="border-gray-300 focus:border-[#2E9013] focus:ring-[#2E9013]"
+                        data-testid="contact-organisation-input"
+                      />
+                    </div>
+
+                    {/* Fonction */}
+                    <div className="space-y-2">
+                      <Label htmlFor="fonction">Fonction</Label>
+                      <Input
+                        id="fonction" name="fonction" type="text"
+                        placeholder="Directeur R&D, Chef de projet clinique..."
+                        value={formData.fonction} onChange={handleChange}
+                        className="border-gray-300 focus:border-[#2E9013] focus:ring-[#2E9013]"
+                        data-testid="contact-fonction-input"
+                      />
+                    </div>
+
+                    {/* Téléphone */}
+                    <div className="space-y-2">
+                      <Label htmlFor="phone">Téléphone <span className="text-[#6B7280] font-normal text-sm">(optionnel)</span></Label>
+                      <Input
+                        id="phone" name="phone" type="tel"
+                        placeholder="+33 1 XX XX XX XX"
+                        value={formData.phone} onChange={handleChange}
+                        className="border-gray-300 focus:border-[#2E9013] focus:ring-[#2E9013]"
+                        data-testid="contact-phone-input"
+                      />
+                    </div>
+
+                    {/* Sujet — select */}
+                    <div className="space-y-2">
+                      <Label htmlFor="subject">Sujet de la demande *</Label>
+                      <select
+                        id="subject" name="subject" required
                         value={formData.subject} onChange={handleChange}
-                        className="border-gray-300 focus:border-[#2E9013] focus:ring-[#2E9013]"
+                        className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:border-[#2E9013] focus:ring-1 focus:ring-[#2E9013] bg-white text-[#2B2B2B]"
                         data-testid="contact-subject-input"
-                      />
+                      >
+                        {SUBJECT_OPTIONS.map((opt) => (
+                          <option key={opt.value} value={opt.value} disabled={opt.value === ''}>{opt.label}</option>
+                        ))}
+                      </select>
                     </div>
 
                     {/* Message */}
                     <div className="space-y-2">
-                      <Label htmlFor="message">{t('contact.form.message')} *</Label>
+                      <Label htmlFor="message">Votre message *</Label>
                       <Textarea
-                        id="message" name="message" required rows={5}
-                        placeholder={t('contact.form.messagePlaceholder')}
+                        id="message" name="message" required rows={6}
+                        maxLength={1500}
+                        placeholder="Décrivez votre projet, vos besoins, votre calendrier..."
                         value={formData.message} onChange={handleChange}
                         className="border-gray-300 focus:border-[#2E9013] focus:ring-[#2E9013] resize-none"
                         data-testid="contact-message-input"
                       />
+                      <p className="text-xs text-[#6B7280] text-right">{formData.message.length} / 1500</p>
                     </div>
 
-                    {/* Fichier */}
-                    {/* <div className="space-y-2">
-                      <Label htmlFor="file">{t('contact.form.fileUpload')}</Label>
-                      <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-[#2E9013] transition-colors">
-                        <input id="file" name="file" type="file" onChange={handleFileChange} className="hidden" data-testid="contact-file-input" />
-                        <label htmlFor="file" className="cursor-pointer">
-                          <Upload className="w-8 h-8 text-gray-400 mx-auto mb-2" />
-                          <p className="text-sm text-[#4B5563]">
-                            {formData.file ? formData.file.name : t('contact.form.uploadPlaceholder')}
-                          </p>
-                          <p className="text-xs text-gray-400 mt-1">{t('contact.form.uploadHint')}</p>
-                        </label>
-                      </div>
-                    </div> */}
+                    {/* RGPD consent */}
+                    <div className="flex items-start gap-3">
+                      <input
+                        id="rgpdConsent" name="rgpdConsent" type="checkbox" required
+                        checked={formData.rgpdConsent} onChange={handleChange}
+                        className="mt-1 w-4 h-4 accent-[#2E9013] flex-shrink-0"
+                        data-testid="contact-rgpd-input"
+                      />
+                      <Label htmlFor="rgpdConsent" className="text-sm font-normal cursor-pointer">
+                        J'accepte la{' '}
+                        <Link to="/privacy" className="text-[#2E9013] hover:underline font-semibold">
+                          Politique de Confidentialité
+                        </Link>{' '}
+                        *
+                      </Label>
+                    </div>
 
                     <Button
                       type="submit"
@@ -226,53 +227,68 @@ const ContactPage = () => {
                       data-testid="contact-submit-btn"
                     >
                       <Send className="w-5 h-5 mr-2" />
-                      {t('contact.form.submit')}
+                      Envoyer le message
                     </Button>
+
+                    <p className="text-[#6B7280] text-xs mt-3 italic leading-relaxed">
+                      En envoyant ce message, vous acceptez que vos données soient traitées par Freearcs Pharma Services pour répondre à votre demande, conformément à notre{' '}
+                      <Link to="/privacy" className="text-[#2E9013] hover:underline">Politique de Confidentialité</Link>.{' '}
+                      Vos données ne font l'objet d'aucune cession à des tiers à des fins commerciales.
+                    </p>
                   </form>
                 </CardContent>
               </Card>
             </div>
 
-            {/* Sidebar */}
-            <div className="space-y-6">
-              <Card className="shadow-lg">
-                <CardContent className="p-6">
-                  <h3 className="font-raleway text-lg font-bold text-[#573D4E] mb-4">
-                    {t('contact.contactInfoTitle')}
-                  </h3>
-                  <div className="space-y-4">
-                    <a href="mailto:contact@freearcs.com" className="flex items-center gap-3 text-[#4B5563] hover:text-[#2E9013] transition-colors">
-                      <div className="w-10 h-10 rounded-full bg-[#EAF5E1] flex items-center justify-center flex-shrink-0">
-                        <Mail className="w-5 h-5 text-[#2E9013]" />
-                      </div>
-                      <span>contact@freearcs.com</span>
-                    </a>
-                    <a href="tel:+33179932112" className="flex items-center gap-3 text-[#4B5563] hover:text-[#2E9013] transition-colors">
-                      <div className="w-10 h-10 rounded-full bg-[#EAF5E1] flex items-center justify-center flex-shrink-0">
-                        <Phone className="w-5 h-5 text-[#2E9013]" />
-                      </div>
-                      <span>+33 1 79 93 21 12</span>
-                    </a>
-                    <div className="flex items-start gap-3 text-[#4B5563]">
-                      <div className="w-10 h-10 rounded-full bg-[#EAF5E1] flex items-center justify-center flex-shrink-0">
-                        <MapPin className="w-5 h-5 text-[#2E9013]" />
-                      </div>
-                      <span>50 Avenue des Champs-Élysées<br />75008 Paris</span>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
+            {/* Colonne droite (40%) */}
+            <div className="w-full lg:w-2/5 flex flex-col gap-6">
 
-              <Card className="shadow-lg">
-                <CardContent className="p-6">
-                  <h3 className="font-raleway text-lg font-bold text-[#573D4E] mb-3">
-                    {t('contact.afcrosMemberTitle')}
-                  </h3>
-                  <img src="/AFCROs.png" alt="AFCROs" className="h-10 w-auto object-contain mb-2" />
-                  <p className="text-sm text-[#4B5563]">{t('contact.afcrosMemberSubtitle')}</p>
-                </CardContent>
-              </Card>
-            </div>
+              {/* Coordonnées */}
+              <div className="bg-white rounded-xl shadow-sm p-8">
+                <h3 className="text-xl font-bold text-[#573D4E] mb-5">Coordonnées</h3>
+                <div className="space-y-4">
+                  <a href="mailto:contact@freearcs.com" className="flex items-center gap-3 text-[#4B5563] hover:text-[#2E9013] transition-colors">
+                    <div className="w-9 h-9 rounded-full bg-[#EAF5E1] flex items-center justify-center flex-shrink-0">
+                      <Mail className="w-4 h-4 text-[#2E9013]" />
+                    </div>
+                    <span>contact@freearcs.com</span>
+                  </a>
+                  <a href="tel:+33179932112" className="flex items-center gap-3 text-[#4B5563] hover:text-[#2E9013] transition-colors">
+                    <div className="w-9 h-9 rounded-full bg-[#EAF5E1] flex items-center justify-center flex-shrink-0">
+                      <Phone className="w-4 h-4 text-[#2E9013]" />
+                    </div>
+                    <span>+33 1 79 93 21 12</span>
+                  </a>
+                  <div className="flex items-start gap-3 text-[#4B5563]">
+                    <div className="w-9 h-9 rounded-full bg-[#EAF5E1] flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <MapPin className="w-4 h-4 text-[#2E9013]" />
+                    </div>
+                    <span>50 Avenue des Champs-Élysées<br />75008 Paris</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Carrières */}
+              <div className="bg-white rounded-xl shadow-sm p-8">
+                <div className="flex items-center gap-3 mb-4">
+                  <Briefcase className="w-6 h-6 text-[#2E9013]" />
+                  <h3 className="text-xl font-bold text-[#573D4E]">Carrières</h3>
+                </div>
+                <p className="text-[#4B5563] mb-6">
+                  Vous souhaitez rejoindre nos équipes ?
+                </p>
+                <p className="text-[#4B5563] mb-8">
+                  Adressez votre candidature à{' '}
+                  <a href="mailto:contact@freearcs.com" className="text-[#2E9013] font-semibold hover:underline">
+                    contact@freearcs.com
+                  </a>
+                </p>
+                <p className="text-[#4B5563] text-sm italic">
+                  Candidatures spontanées et candidatures aux offres ouvertes acceptées.
+                </p>
+              </div>
+
+            </div>{/* fin colonne droite */}
 
           </div>
         </div>

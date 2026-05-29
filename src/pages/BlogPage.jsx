@@ -1,16 +1,16 @@
-// filepath: /Users/awf/Projects/clients/freearcs/fps-react-frontend/src/pages/BlogPage.jsx
-import React from 'react';
+import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import { Card, CardContent } from '../components/ui/card';
-import { ArrowRight, Calendar, Tag, ChevronRight } from 'lucide-react';
+import { ArrowRight, Calendar, Tag } from 'lucide-react';
 import SEO from '@/components/SEO';
+import FloatingCTA from '../components/FloatingCTA';
 
 const ARTICLES = [
   {
     tag: 'Réglementaire',
-    title: 'Actualité réglementaire en recherche clinique',
-    excerpt: "Analyse Freearcs Pharma Services autour des évolutions qui transforment la préparation et la conduite des études cliniques.",
+    title: 'Comment concilier accélération des essais et exigence éthique ?',
+    excerpt: "Le rôle stratégique des Comités de Protection des Personnes (CPPs) dans le nouveau cadre EU CTR. Décryptage des enjeux de compétitivité européenne et de souveraineté pharmaceutique.",
     date: 'Article LinkedIn',
     readTime: '4 min',
     image: '/cardio-stethoscope-digital.webp',
@@ -18,38 +18,38 @@ const ARTICLES = [
   },
   {
     tag: 'Opérations cliniques',
-    title: "Anticiper les étapes critiques d'un projet clinique",
-    excerpt: "Retour terrain sur les arbitrages opérationnels, les délais et la coordination des parties prenantes dans les études complexes.",
+    title: "Essais cliniques décentralisés : un défi organisationnel",
+    excerpt: "Les essais décentralisés rendent la recherche plus accessible aux patients mais déplacent la complexité vers l'opérationnel : e-consent, circuit du médicament, télémédecine, coordination des acteurs.",
     date: 'Article LinkedIn',
     readTime: '4 min',
     image: '/reunion-equipe_gemini.webp',
-    url: 'https://www.linkedin.com/feed/update/urn:li:activity:7396223126247788545/',
+    url: 'https://www.linkedin.com/posts/nad%C3%A8ge-kambou-%F0%9F%8C%8D-64391089_rechercheclinique-clinicaltrials-dct-activity-7439620809733722112-eFdf',
   },
   {
-    tag: 'Stratégie',
-    title: 'Accompagner les promoteurs innovants',
-    excerpt: "Pourquoi les biotechs, medtechs et startups HealthTech ont besoin d'un partenaire CRO agile et pédagogique.",
+    tag: 'Innovation',
+    title: "Maladies chroniques complexes : la convergence des innovations",
+    excerpt: "Thérapie génique en mucoviscidose (études LENTICLAIR et RECODE), télésurveillance en insuffisance rénale chronique, neuromodulation en Alzheimer et SLA : panorama des innovations qui redessinent la recherche clinique.",
     date: 'Article LinkedIn',
-    readTime: '5 min',
+    readTime: '4 min',
     image: '/main-ampoule-succes.webp',
-    url: 'https://www.linkedin.com/feed/update/urn:li:activity:7397314048805097472/',
+    url: 'https://www.linkedin.com/feed/update/urn:li:activity:7397314048805097472',
   },
 ];
 
 const TAG_COLORS = {
   'Réglementaire': { bg: '#EAF5E1', color: '#2E9013' },
   'Opérations cliniques': { bg: '#EDE8EB', color: '#573D4E' },
-  'Stratégie': { bg: '#FEF3DC', color: '#F5A617' },
+  'Innovation': { bg: '#EAF5E1', color: '#2E9013' },
+  'Formation': { bg: '#FEF3DC', color: '#F5A617' },
 };
-
-
 
 const BlogPage = () => {
   const { t } = useLanguage();
   const topics = t('blog.topics');
+  const heroRef = useRef(null);
 
   return (
-    <div className="min-h-screen bg-muted" data-testid="blog-page">
+    <div className="min-h-screen bg-[#F9FAFD]" data-testid="blog-page">
       <SEO
         title={t('blog.metaTitle')}
         description={t('blog.metaDescription')}
@@ -57,12 +57,12 @@ const BlogPage = () => {
       />
 
       {/* ── Hero ───────────────────────────────────────────────────────── */}
-      <section className="relative overflow-hidden">
+      <section ref={heroRef} className="relative overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-bottom bg-no-repeat"
           style={{ backgroundImage: 'url(/assets/img/background-2.jpg)' }}
         />
-        <div className="absolute inset-0 bg-[#2B2B2B]/60" /> {/* Overlay */}
+        <div className="absolute inset-0 bg-[#2B2B2B]/60" />
 
         <div className="max-w-[1800px] mx-auto px-6 lg:px-12 xl:px-20 relative z-10">
           <div className="pt-24 pb-20 lg:pt-32 lg:pb-24">
@@ -71,19 +71,32 @@ const BlogPage = () => {
                 <h1 className="text-white text-3xl md:text-5xl lg:text-6xl font-bold mb-0 leading-none">
                   Blog
                 </h1>
-                <div className="mt-4 flex flex-col sm:flex-row sm:items-center justify-center gap-4 sm:gap-2">
-                  <div className="flex items-center justify-center gap-2 text-white/80 font-bold text-lg">
-                    <Link to="/" className="text-white hover:text-white/80 transition-colors">{t('nav.home')}</Link>
-                    <span className="text-white/60">/</span>
-                    <span className="text-white">Blog</span>
-                  </div>
-                  {/* <span className="hidden sm:inline-block text-white/40">|</span>
-                  <span className="text-[#2E9013] text-lg font-medium italic">
-                    {t('blog.introText')}
-                  </span> */}
+                <div className="mt-4 flex items-center justify-center gap-2 text-white/80 font-bold text-lg">
+                  <Link to="/" className="text-white hover:text-white/80 transition-colors">{t('nav.home')}</Link>
+                  <span className="text-white/60">/</span>
+                  <span className="text-white">Blog</span>
                 </div>
+                <p className="text-white/90 italic text-lg mt-4">
+                  Veille réglementaire, méthodologie, retours d'expérience terrain.
+                </p>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Présentation + Filtres ──────────────────────────────────────── */}
+      <section className="py-10 bg-white border-b border-gray-100">
+        <div className="max-w-[1800px] mx-auto px-6 lg:px-12 xl:px-20">
+          <p className="text-[#4B5563] text-lg leading-relaxed max-w-3xl mx-auto text-center mb-8">
+            Retrouvez ici la veille, les analyses, les retours d'expérience terrain et les actualités de la recherche clinique : évolutions réglementaires, méthodologie, conduite opérationnelle des études et bonnes pratiques cliniques.
+          </p>
+          <div className="flex flex-wrap justify-center gap-3">
+            {Array.isArray(topics) && topics.map((topic) => (
+              <span key={topic} className="px-5 py-2 bg-[#F9FAFD] rounded-full border border-gray-200 text-[#573D4E] hover:bg-[#2E9013] hover:text-white cursor-pointer transition-colors text-sm font-medium">
+                {topic}
+              </span>
+            ))}
           </div>
         </div>
       </section>
@@ -137,7 +150,7 @@ const BlogPage = () => {
       </section>
 
       {/* ── CTA LinkedIn ── */}
-      <section className="py-16 mx-4 sm:mx-8 lg:mx-16 mb-4 rounded-3xl bg-[#573D4E]" data-testid="newsletter-section">
+      <section className="py-16 mx-4 sm:mx-8 lg:mx-16 mb-8 rounded-3xl bg-[#573D4E]" data-testid="newsletter-section">
         <div className="max-w-3xl mx-auto px-6 text-center">
           <h2 className="font-raleway text-2xl lg:text-3xl font-bold text-white mb-4">
             {t('blog.stayUpdatedTitle')}
@@ -156,19 +169,11 @@ const BlogPage = () => {
         </div>
       </section>
 
-      {/* ── Topics ── */}
-      <section className="py-16 bg-muted" data-testid="topics-section">
-        <div className="max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-12 xl:px-20">
-          <h2 className="font-raleway text-xl font-bold text-[#573D4E] mb-6 text-center">{t('blog.topicsTitle')}</h2>
-          <div className="flex flex-wrap justify-center gap-3">
-            {Array.isArray(topics) && topics.map((topic) => (
-              <span key={topic} className="px-5 py-2 bg-white rounded-full shadow-sm text-[#573D4E] hover:bg-[#2E9013] hover:text-white cursor-pointer transition-colors text-sm">
-                {topic}
-              </span>
-            ))}
-          </div>
-        </div>
-      </section>
+      <FloatingCTA
+        label="Discutons de votre projet"
+        href="/contact"
+        triggerRef={heroRef}
+      />
     </div>
   );
 };

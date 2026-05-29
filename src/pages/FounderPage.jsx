@@ -1,13 +1,32 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../context/LanguageContext';
-import { Button } from '../components/ui/button';
-import { ArrowRight, CheckCircle, Globe, Award, Beaker } from 'lucide-react';
+import { CheckCircle, Handshake, GraduationCap, Users } from 'lucide-react';
 import SEO from '@/components/SEO';
+import FloatingCTA from '../components/FloatingCTA';
+
+const CONVICTIONS = [
+  {
+    title: "Une CRO n'est pas un sous-traitant : c'est un partenaire stratégique.",
+    text: "La qualité d'une étude clinique ne se mesure pas seulement à l'exécution. Elle se construit dans le dialogue entre le promoteur et la CRO, à chaque étape.",
+    icon: Handshake,
+  },
+  {
+    title: "La rigueur sans la pédagogie n'a aucun sens.",
+    text: "Mon rôle n'est pas seulement d'exécuter l'étude, mais aussi de transmettre, pour que mes partenaires comprennent et défendent chaque décision réglementaire et opérationnelle prise sur leur projet.",
+    icon: GraduationCap,
+  },
+  {
+    title: "Chaque promoteur mérite un accompagnement adapté à sa réalité.",
+    text: "Biotech early-stage, laboratoire établi, medtech innovante ou acteur académique : les besoins ne sont pas les mêmes. Le cadre méthodologique non plus.",
+    icon: Users,
+  },
+];
 
 const FounderPage = () => {
   const { t } = useLanguage();
+  const heroRef = useRef(null);
 
   return (
     <div className="min-h-screen bg-[#F9FAFD]" data-testid="founder-page">
@@ -18,12 +37,12 @@ const FounderPage = () => {
       />
 
       {/* ── Hero ───────────────────────────────────────────────────────── */}
-      <section className="relative overflow-hidden">
+      <section ref={heroRef} className="relative overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-bottom bg-no-repeat"
           style={{ backgroundImage: 'url(/assets/img/background-2.jpg)' }}
         />
-        <div className="absolute inset-0 bg-[#2B2B2B]/60" /> {/* Overlay */}
+        <div className="absolute inset-0 bg-[#2B2B2B]/60" />
 
         <div className="max-w-[1800px] mx-auto px-6 lg:px-12 xl:px-20 relative z-10">
           <div className="pt-24 pb-20 lg:pt-32 lg:pb-24">
@@ -33,7 +52,7 @@ const FounderPage = () => {
                   {t('nav.founder')}
                 </h1>
                 <div className="mt-4 flex items-center justify-center gap-2 text-white/80 font-bold text-lg">
-                  <Link to="/" className="text-white hover:text-white/80 transition-colors">Home</Link>
+                  <Link to="/" className="text-white hover:text-white/80 transition-colors">Accueil</Link>
                   <span className="text-white/60">/</span>
                   <span className="text-white">{t('nav.founder')}</span>
                 </div>
@@ -57,9 +76,6 @@ const FounderPage = () => {
             </div>
             <div className="lg:w-8/12 p-8 md:p-12 lg:p-16 flex items-center bg-white rounded-r-xl">
               <div>
-                {/* <h5 className="font-raleway text-xl font-bold text-[#573D4E]">
-                  Notre Fondatrice
-                </h5> */}
                 <h4 className="mt-2 text-2xl font-bold text-[#2B2B2B]">
                   Nadège KAMBOU
                 </h4>
@@ -106,49 +122,30 @@ const FounderPage = () => {
         </div>
       </section>
 
-      {/* ── Stats Banner ───────────────────────────────────────────────── */}
-      {/* <section className="relative overflow-hidden py-16 lg:py-24">
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: 'url(/assets/img/background-15.jpg)' }}
-        />
-        <div className="absolute inset-0 bg-[#2B2B2B]/70 mix-blend-multiply" />
-
-        <div className="max-w-[1800px] mx-auto px-6 lg:px-12 xl:px-20 relative z-10">
-          <div className="flex flex-col lg:flex-row gap-8">
-            <div className="flex items-start mr-8">
-              <img src="/assets/img/checkmark.png" alt="Checkmark" className="w-14" />
-            </div>
-            <div className="flex-1">
-              <h2 className="text-[#F5A617] text-3xl lg:text-4xl font-bold mb-8">
-                Take the right step,<br />
-                <span className="text-white">do the big things.</span>
-              </h2>
-
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-8 lg:pr-20">
-                <div>
-                  <div className="text-3xl lg:text-5xl font-bold text-white mb-2">10+</div>
-                  <h6 className="text-white/80 font-medium uppercase tracking-wider text-sm">{t('founder.yearsLabel')}</h6>
+      {/* ── Mes convictions ────────────────────────────────────────────── */}
+      <section className="py-16 lg:py-24 bg-[#FAFAFA]">
+        <div className="max-w-[1100px] mx-auto px-6">
+          <div className="text-center mb-12">
+            <h2 className="text-2xl md:text-3xl font-bold text-[#573D4E]">Mes convictions</h2>
+            <p className="text-[#2E9013] italic mt-2">Trois principes qui guident chacune de mes missions.</p>
+          </div>
+          <div className="space-y-8">
+            {CONVICTIONS.map(({ title, text, icon: Icon }) => (
+              <div key={title} className="flex gap-6 items-start">
+                <div className="w-12 h-12 rounded-full bg-[#EAF5E1] flex items-center justify-center flex-shrink-0">
+                  <Icon className="w-6 h-6 text-[#2E9013]" />
                 </div>
                 <div>
-                  <div className="text-3xl lg:text-5xl font-bold text-white mb-2">CROs</div>
-                  <h6 className="text-white/80 font-medium uppercase tracking-wider text-sm">{t('founder.experienceLabel')}</h6>
-                </div>
-                <div>
-                  <div className="text-3xl lg:text-5xl font-bold text-white mb-2">5+</div>
-                  <h6 className="text-white/80 font-medium uppercase tracking-wider text-sm">{t('founder.expertiseLabel')}</h6>
-                </div>
-                <div>
-                  <div className="text-3xl lg:text-5xl font-bold text-white mb-2">100%</div>
-                  <h6 className="text-white/80 font-medium uppercase tracking-wider text-sm">Engagement</h6>
+                  <p className="font-bold text-[#2B2B2B] text-lg mb-1">{title}</p>
+                  <p className="text-[#4B5563] leading-relaxed">{text}</p>
                 </div>
               </div>
-            </div>
+            ))}
           </div>
         </div>
-      </section> */}
+      </section>
 
-      {/* ── Therapeutic Areas (Replacing Global Leadership) ────────────── */}
+      {/* ── Aires thérapeutiques ────────────────────────────────────────── */}
       <section className="py-16 lg:py-24 bg-white">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-12 xl:px-20">
           <div className="text-center mb-12">
@@ -170,27 +167,11 @@ const FounderPage = () => {
         </div>
       </section>
 
-      {/* ── CTA ────────────────────────────────────────────────────────── */}
-      {/* <section className="bg-[#2E9013] py-16 text-center lg:text-left">
-        <div className="max-w-[1800px] mx-auto px-6 lg:px-12 xl:px-20">
-          <div className="flex flex-col lg:flex-row items-center justify-between gap-8">
-            <div className="lg:w-8/12">
-              <h4 className="text-white text-2xl lg:text-3xl font-bold mb-0 leading-tight">
-                Si vous avez des questions concernant votre projet clinique...<br className="hidden lg:block" />
-                nous sommes disponibles pour vous accompagner.
-              </h4>
-            </div>
-            <div className="lg:w-auto">
-              <Link 
-                to="/contact"
-                className="inline-block bg-white text-[#2E9013] hover:bg-gray-100 font-bold px-8 py-3 rounded-full shadow-lg transition-all"
-              >
-                {t('nav.contactUs')}
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section> */}
+      <FloatingCTA
+        label="Discutons de votre projet"
+        href="/contact"
+        triggerRef={heroRef}
+      />
     </div>
   );
 };

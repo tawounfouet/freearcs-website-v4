@@ -11,11 +11,11 @@ const Footer = () => {
   const { t, language, setLanguage } = useLanguage();
 
   const navLinks = [
+    { path: '/', label: t('nav.home') },
     { path: '/about', label: t('nav.about') },
     { path: '/services', label: t('nav.services') },
+    { path: '/legal-representation', label: t('nav.legalRepresentation') },
     { path: '/therapeutic-expertise', label: t('nav.therapeuticExpertise') },
-    { path: '/why-choose-us', label: t('nav.whyChooseUs') },
-    { path: '/references', label: t('nav.references') },
     { path: '/blog', label: t('nav.blog') },
     { path: '/contact', label: t('nav.contact') },
   ];
@@ -33,7 +33,6 @@ const Footer = () => {
                 className="h-12 w-auto mb-4"
               />
             </Link>
-            <p className="text-white/80 italic text-sm mb-4">A passion For Better Health</p>
             <div className="flex items-center space-x-2 text-white/70 text-sm">
               <MapPin className="w-4 h-4 flex-shrink-0" />
               <span>50 Avenue des Champs-Élysées, 75008 Paris</span>
@@ -73,10 +72,16 @@ const Footer = () => {
                 {t('footer.serviceRegulatoryAffairs')}
               </Link>
               <Link to="/services" className="hover:text-[#F5A617] transition-colors">
+                {t('footer.serviceContractBudget')}
+              </Link>
+              <Link to="/services" className="hover:text-[#F5A617] transition-colors">
                 {t('footer.serviceFeasibilityMonitoring')}
               </Link>
-              <Link to="/legal-representation" className="hover:text-[#F5A617] transition-colors">
-                {t('footer.serviceLegalRepresentation')}
+              <Link to="/services" className="hover:text-[#F5A617] transition-colors">
+                {t('footer.serviceSiteSupport')}
+              </Link>
+              <Link to="/services" className="hover:text-[#F5A617] transition-colors">
+                {t('footer.serviceTraining')}
               </Link>
             </nav>
           </div>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import {
@@ -11,10 +11,9 @@ import {
   CheckCircle,
   X,
   ArrowRight,
-  Building2,
-  Network,
 } from 'lucide-react';
 import SEO from '@/components/SEO';
+import FloatingCTA from '../components/FloatingCTA';
 
 /* ── Données des 6 piliers ─────────────────────────────────────────────── */
 const PILLARS = [
@@ -23,7 +22,7 @@ const PILLARS = [
     icon: ClipboardList,
     color: '#2E9013',
     title: 'Gestion de Projet',
-    subtitle: "Pilotage opérationnel d'études cliniques",
+    subtitle: "Pilotage opérationnel et coordination de vos études cliniques.",
     missions: [
       "Assistance à la conception d'études (design, faisabilité) et structuration des documents d'étude",
       'Coordination de projet et interfaces multipartites',
@@ -37,12 +36,13 @@ const PILLARS = [
     icon: FileText,
     color: '#573D4E',
     title: 'Affaires Réglementaires',
-    subtitle: 'Soumissions et conformité réglementaire en France et Internationale',
+    subtitle: 'Soumissions et conformité réglementaire, en France et à l\'international.',
     missions: [
-      'Expertise CTR 536/2014, MDR 745/2017, Directive 2010/63/UE',
-      "Soumissions via CTIS et auprès des autorités françaises (ANSM, CPP, ANSES, CNIL)",
+      'Expertise des cadres réglementaires : médicaments, dispositifs médicaux et études hors produits de santé, en France et à l\'international',
+      "Soumissions réglementaires auprès des autorités compétentes nationales et internationales",
+      "Coordination avec les comités d'éthique selon les juridictions",
       "Déclaration des événements indésirables et suivi de pharmacovigilance",
-      "Suivi réglementaire en cours d'étude et amendements",
+      "Suivi réglementaire en cours d'étude et gestion des amendements",
     ],
   },
   {
@@ -50,7 +50,7 @@ const PILLARS = [
     icon: DollarSign,
     color: '#F5A617',
     title: 'Contrat et Budget',
-    subtitle: "Négociation et gestion contractuelle des études cliniques",
+    subtitle: "Négociation et gestion contractuelle de vos études cliniques.",
     missions: [
       'Rédaction et négociation des Clinical Trial Agreements (CTA)',
       'Négociation des accords avec les centres investigateurs',
@@ -64,7 +64,7 @@ const PILLARS = [
     icon: Search,
     color: '#2E9013',
     title: 'Faisabilité et Monitoring',
-    subtitle: 'Sélection des sites et supervision opérationnelle des études',
+    subtitle: 'Sélection des centres et supervision opérationnelle de vos études.',
     missions: [
       'Études de faisabilité et qualification stratégique des centres investigateurs',
       "Visites de sélection, d'initiation, de monitoring et de clôture",
@@ -78,11 +78,11 @@ const PILLARS = [
     icon: Users,
     color: '#573D4E',
     title: 'Support Site et Saisie de Données',
-    subtitle: 'Soutien opérationnel aux investigateurs et conformité',
+    subtitle: 'Soutien opérationnel aux investigateurs et conformité des données.',
     missions: [
       'Support au recrutement des patients (stratégie, screening, suivi)',
       "Saisie de données dans l'eCRF et résolution des queries",
-      'Aide à l\'inclusion et préparation des visites',
+      "Aide à l'inclusion et préparation des visites",
       'Suivi de la conformité des centres — Audit',
     ],
   },
@@ -91,15 +91,15 @@ const PILLARS = [
     icon: GraduationCap,
     color: '#F5A617',
     title: 'Formation',
-    subtitle: 'Formation aux Bonnes Pratiques Cliniques et transfert des connaissances',
+    subtitle: 'Transfert de compétences et accompagnement personnalisé : de la conception de l\'étude à l\'ancrage opérationnel',
     missions: [
-      'Formation aux exigences réglementaires',
+      "Stratégie de montage d'étude clinique et accompagnement à la structuration des études de preuve de concept (POC)",
+      "Diagnostic des besoins et conception de modules sur-mesure adaptés à votre étude et votre aire thérapeutique",
+      'Formation aux Bonnes Pratiques Cliniques (BPC) et aux exigences réglementaires',
       'Formation à la méthodologie appliquée à la Recherche Clinique',
-      "Accompagnement à la structuration des études de Proof of Concept (POC)",
-      "Modules sur mesure adaptés à votre projet, votre aire thérapeutique ou votre maturité opérationnelle",
-      'Journées team building stratégique',
       'Formation des équipes investigatrices',
-      'Mise en œuvre des bonnes pratiques au sein de vos équipes',
+      "Accompagnement à la mise en oeuvre des bonnes pratiques au sein de vos équipes",
+      "Team building stratégique : journées d'alignement des équipes autour des enjeux d'un projet clinique",
     ],
   },
 ];
@@ -120,7 +120,6 @@ const ServiceModal = ({ pillar, onClose }) => {
         className="relative bg-white rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Header uniforme */}
         <div className="relative p-8 rounded-t-2xl bg-[#573D4E]">
           <div className="flex items-start justify-between gap-4">
             <div className="flex items-center gap-4">
@@ -141,7 +140,6 @@ const ServiceModal = ({ pillar, onClose }) => {
           </div>
         </div>
 
-        {/* Corps */}
         <div className="p-8">
           <p className="text-[#573D4E] font-semibold text-lg mb-6 italic">
             {pillar.subtitle}
@@ -179,6 +177,7 @@ const ServiceModal = ({ pillar, onClose }) => {
 const ServicesPage = () => {
   const { t } = useLanguage();
   const [activePillar, setActivePillar] = useState(null);
+  const heroRef = useRef(null);
 
   return (
     <div className="min-h-screen bg-[#F9FAFD]" data-testid="services-page">
@@ -189,7 +188,7 @@ const ServicesPage = () => {
       />
 
       {/* ── Hero ───────────────────────────────────────────────────────── */}
-      <section className="relative overflow-hidden">
+      <section ref={heroRef} className="relative overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-bottom bg-no-repeat"
           style={{ backgroundImage: 'url(/assets/img/background-2.jpg)' }}
@@ -202,16 +201,10 @@ const ServicesPage = () => {
                 <h1 className="text-white text-3xl md:text-5xl lg:text-6xl font-bold mb-0 leading-none">
                   Nos Services
                 </h1>
-                <div className="mt-4 flex flex-col sm:flex-row sm:items-center justify-center gap-2">
-                  <div className="flex items-center justify-center gap-2 text-white/80 font-bold text-lg">
-                    <Link to="/" className="text-white hover:text-white/80 transition-colors">{t('nav.home')}</Link>
-                    <span className="text-white/60">/</span>
-                    <span className="text-white">Nos Services</span>
-                  </div>
-                  {/* <span className="hidden sm:inline-block text-white/40">|</span>
-                  <span className="text-[#2E9013] text-lg font-medium italic">
-                    Six piliers de prestations CRO. Deux modalités d'engagement.
-                  </span> */}
+                <div className="mt-4 flex items-center justify-center gap-2 text-white/80 font-bold text-lg">
+                  <Link to="/" className="text-white hover:text-white/80 transition-colors">{t('nav.home')}</Link>
+                  <span className="text-white/60">/</span>
+                  <span className="text-white">Nos Services</span>
                 </div>
               </div>
             </div>
@@ -234,15 +227,10 @@ const ServicesPage = () => {
             {/* Card 1 */}
             <div className="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow overflow-hidden flex flex-col">
               <div className="p-8 lg:p-10 flex-1 flex flex-col">
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="w-14 h-14 rounded-full bg-[#EAF5E1] flex items-center justify-center flex-shrink-0">
-                    <Building2 className="w-7 h-7 text-[#2E9013]" />
-                  </div>
-                  <div>
-                    <p className="text-[#2E9013] text-xs font-bold uppercase tracking-widest mb-1">Modalité 1</p>
-                    <h3 className="text-[#573D4E] text-xl font-bold">Modèle intégré</h3>
-                    <p className="text-[#4B5563] text-sm">(internalisation)</p>
-                  </div>
+                <div className="mb-6">
+                  <p className="text-[#2E9013] text-xs font-bold uppercase tracking-widest mb-1">Modalité 1</p>
+                  <h3 className="text-[#573D4E] text-xl font-bold">Modèle intégré</h3>
+                  <p className="text-[#4B5563] text-sm">(internalisation)</p>
                 </div>
                 <p className="text-[#4B5563] text-base leading-relaxed flex-1">
                   Freearcs Pharma Services prend en charge l'étude de bout en bout sous sa propre gouvernance. Pilotage, exécution opérationnelle, monitoring, reporting réglementaire. Vous gardez la supervision stratégique, nous portons l'exécution.
@@ -259,15 +247,10 @@ const ServicesPage = () => {
             {/* Card 2 */}
             <div className="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow overflow-hidden flex flex-col">
               <div className="p-8 lg:p-10 flex-1 flex flex-col">
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="w-14 h-14 rounded-full bg-[#EDE8EB] flex items-center justify-center flex-shrink-0">
-                    <Network className="w-7 h-7 text-[#573D4E]" />
-                  </div>
-                  <div>
-                    <p className="text-[#573D4E] text-xs font-bold uppercase tracking-widest mb-1">Modalité 2</p>
-                    <h3 className="text-[#573D4E] text-xl font-bold">Intégration dans vos équipes</h3>
-                    <p className="text-[#4B5563] text-sm">(outsourcing senior)</p>
-                  </div>
+                <div className="mb-6">
+                  <p className="text-[#573D4E] text-xs font-bold uppercase tracking-widest mb-1">Modalité 2</p>
+                  <h3 className="text-[#573D4E] text-xl font-bold">Intégration dans vos équipes</h3>
+                  <p className="text-[#4B5563] text-sm">(outsourcing senior)</p>
                 </div>
                 <p className="text-[#4B5563] text-base leading-relaxed flex-1">
                   Nos experts s'intègrent dans votre organisation, sous votre gouvernance, comme une extension senior de votre équipe interne. Indiqué pour les promoteurs qui veulent renforcer leur capacité d'exécution sans sous-traiter le pilotage.
@@ -323,34 +306,6 @@ const ServicesPage = () => {
         </div>
       </section>
 
-      {/* ── CTA ────────────────────────────────────────────────────────── */}
-      <section className="py-16 lg:py-24 bg-[#F9FAFD]">
-        <div className="max-w-[1800px] mx-auto px-6 lg:px-12 xl:px-20">
-          <div className="bg-[#2E9013] rounded-2xl p-10 lg:p-16 text-center relative overflow-hidden">
-            <div
-              className="absolute inset-0 bg-cover bg-center opacity-10"
-              style={{ backgroundImage: 'url(/assets/img/background-2.jpg)' }}
-            />
-            <div className="relative z-10">
-              <h2 className="text-white text-2xl md:text-3xl lg:text-4xl font-bold mb-4">
-                Vous préparez une étude clinique ?
-              </h2>
-              <p className="text-white/80 text-lg mb-8 max-w-xl mx-auto">
-                Partagez-nous votre projet, nous vous proposerons l'approche adaptée à votre situation.
-              </p>
-              <Link
-                to="/contact"
-                className="inline-flex items-center gap-2 bg-white text-[#2E9013] hover:bg-gray-100 font-bold px-10 py-4 rounded-full shadow-lg transition-all text-lg"
-                data-testid="services-contact-btn"
-              >
-                Discutons de votre projet
-                <ArrowRight className="w-5 h-5" />
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* ── Modal ──────────────────────────────────────────────────────── */}
       {activePillar && (
         <ServiceModal
@@ -358,6 +313,12 @@ const ServicesPage = () => {
           onClose={() => setActivePillar(null)}
         />
       )}
+
+      <FloatingCTA
+        label="Discutons de votre projet"
+        href="/contact"
+        triggerRef={heroRef}
+      />
     </div>
   );
 };

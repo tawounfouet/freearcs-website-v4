@@ -4,7 +4,7 @@ export const translations = {
       home: "Accueil",
       about: "À propos",
       visionMission: "Qui sommes-nous ?",
-      founder: "Notre fondatrice",
+      founder: "Notre Fondatrice",
       whyChooseUs: "Pourquoi nous choisir ?",
       services: "Services",
       allServices: "Tous nos services",
@@ -99,21 +99,21 @@ export const translations = {
       title: "Qui sommes-nous ? Freearcs Pharma Services, CRO française indépendante",
       metaTitle: "Qui sommes-nous ? Freearcs Pharma Services, CRO française indépendante",
       metaDescription: "CRO française indépendante fondée en 2020 par Nadège KAMBOU. Vision, mission, valeurs et fondatrice. La rigueur des grandes CRO, l'agilité d'un partenaire de proximité.",
-      heroTagline: "Plus qu'un prestataire, l'extension agile de votre équipe clinique",
+      heroTagline: "Une CRO indépendante au service de la recherche clinique.",
       intro: "Freearcs Pharma Services est une organisation de recherche sous contrat (CRO) qui accompagne les porteurs de projets en santé, notamment les biotechs, start-ups e-santé, medtechs, les laboratoires pharmaceutiques, les CROs internationales et locales, ainsi que les acteurs académiques, dans la stratégie et la conduite de leurs études cliniques.",
       introText2: "Notre périmètre couvre l'ensemble du cycle : préparation stratégique, soumissions réglementaires, exécution opérationnelle, monitoring, gestion des données, formation. Sur les études interventionnelles, observationnelles et de données de vie réelle portant sur les médicaments, les dispositifs médicaux, et les hors produits de santé.",
-      introText3: "Fondée sur un modèle hybride unique, qui associe les méthodes éprouvées dans les CRO internationales et la souplesse d'une structure indépendante. Nous apportons la rigueur scientifique acquise au sein des leaders mondiaux du secteur, avec la flexibilité opérationnelle indispensable aux biotechs et medtechs innovantes.",
+      introText3: "Notre modèle hybride combine la rigueur des grandes CROs internationales et la flexibilité opérationnelle indispensable aux biotechs et medtechs innovantes.",
       visionTitle: "Notre Vision",
-      visionText: "Devenir le partenaire de référence pour la recherche clinique en Europe et en Afrique Francophone. Reconnus pour notre expertise, notre rigueur scientifique et notre capacité à innover, nous visons à participer à la transformation des avancées scientifiques en solutions thérapeutiques concrètes pour le bien-être du patient.",
+      visionText: "Devenir le partenaire de référence pour la recherche clinique en Europe et en Afrique Francophone. Reconnus pour notre expertise, notre rigueur scientifique et notre capacité à innover, nous contribuons à transformer les avancées scientifiques en solutions thérapeutiques concrètes pour le bien-être du patient.",
       missionTitle: "Notre Mission",
       missionText: "Parce que nous croyons que chaque maladie est curable, notre mission est d'unir notre expertise à la vôtre pour offrir à chaque patient une solution adaptée, qu'elle soit mécanique, chimique ou naturelle.",
       signature: "A passion For Better Health",
       valuesTitle: "Nos Valeurs",
       values: [
-        { title: "Humanité et Confidentialité", text: "Une écoute active et un respect strict des données de santé." },
-        { title: "Rigueur et Expertise", text: "Une excellence opérationnelle. La même exigence pour chaque projet, quelle que soit sa taille." },
-        { title: "Qualité Scientifique", text: "Conformité GCP ICH E6(R3), Bonnes Pratiques Cliniques. Et des exigences réglementaires ANSM, EMA, FDA selon les juridictions." },
-        { title: "Flexibilité et Réactivité", text: "Capacité d'adaptation aux pivots stratégiques. Mobilisation des profils d'experts correspondants à vos besoins." }
+        { title: "Humanité et Confidentialité", text: "Une écoute active et un respect strict des données de santé. La confidentialité des projets est une discipline collective." },
+        { title: "Rigueur et Expertise", text: "La même exigence pour chaque projet, quelle que soit sa taille. La rigueur, chez nous, c'est une culture partagée." },
+        { title: "Qualité Scientifique", text: "Conformité aux Bonnes Pratiques Cliniques et aux exigences réglementaires selon les juridictions. Formations régulières, partage de bonnes pratiques, veille réglementaire en continu." },
+        { title: "Flexibilité et Réactivité", text: "Capacité d'adaptation aux pivots stratégiques. Mobilisation des profils d'experts correspondants à vos besoins. Notre modèle hybride, à la fois agile et structuré, est une souplesse qui fait notre force." }
       ],
       ctaTitle: "Vous préparez une étude clinique ?",
       ctaButton: "Discutez de votre projet",
@@ -184,8 +184,8 @@ export const translations = {
     },
     legalRepresentation: {
       title: "Représentant Légal dans l'UE pour les Promoteurs Non-UE",
-      metaTitle: "Représentant légal UE — Essais cliniques",
-      metaDescription: "Freearcs Pharma Services assure la représentation légale européenne pour les promoteurs non-UE, conformément au règlement (UE) n°536/2014 et au MDR 745.",
+      metaTitle: "Représentation Légale en Union Européenne — Freearcs Pharma Services",
+      metaDescription: "Service de représentant légal en recherche clinique pour les promoteurs établis hors EEE. Conformité aux exigences réglementaires de l'UE et interlocuteur officiel des autorités.",
       heroSubtitle: "Représentation légale européenne pour les promoteurs non-UE, en conformité avec le règlement (UE) n°536/2014 et le MDR 745.",
       intro: "Freearcs Pharma Services agit en tant que Représentant Légal pour les promoteurs établis en dehors de l'Union européenne, assumant la responsabilité d'assurer que les études cliniques sont conduites en pleine conformité avec les exigences réglementaires et éthiques européennes applicables, ainsi qu'avec les obligations fixées par les autorités de santé compétentes.",
       targetTitle: "Promoteurs ciblés",
@@ -317,8 +317,8 @@ export const translations = {
     },
     blog: {
       title: "Blog — Actualités recherche clinique par Freearcs Pharma Services",
-      metaTitle: "Blog — Actualités de la recherche clinique en France",
-      metaDescription: "Veille réglementaire, tendances CRO, procédure accélérée de l'ANSM, essais décentralisés : retrouvez nos analyses et publications sur la recherche clinique.",
+      metaTitle: "Blog — Éclairages sur la recherche clinique | Freearcs Pharma Services",
+      metaDescription: "Veille réglementaire, méthodologie, retours d'expérience terrain et actualités de la recherche clinique — par Freearcs Pharma Services.",
       readMore: "Lire la suite",
       articles: [
         {
@@ -348,7 +348,7 @@ export const translations = {
       stayUpdatedText: "Suivez-nous sur LinkedIn pour les dernières actualités en recherche clinique et mises à jour réglementaires.",
       linkedinFollow: "Suivre sur LinkedIn",
       topicsTitle: "Thèmes",
-      topics: ["Réglementaire", "Stratégie", "ANSM", "CTIS", "RWE", "Essais décentralisés", "Opérations cliniques"]
+      topics: ["Tous", "Réglementaire", "Opérations cliniques", "Innovation", "Formation"]
     },
     contact: {
       title: "Contact Freearcs Pharma Services — Discutez de votre étude clinique",
@@ -399,10 +399,12 @@ export const translations = {
       copyright: "© 2026 Freearcs Pharma Services. Tous droits réservés.",
       location: "Paris, France",
       servicesTitle: "Services",
-      serviceProjectManagement: "Project Management",
-      serviceRegulatoryAffairs: "Regulatory Affairs",
-      serviceFeasibilityMonitoring: "Feasibility & Monitoring",
-      serviceLegalRepresentation: "Legal Representation EU"
+      serviceProjectManagement: "Gestion de Projet",
+      serviceRegulatoryAffairs: "Affaires Réglementaires",
+      serviceContractBudget: "Contrat et Budget",
+      serviceFeasibilityMonitoring: "Faisabilité et Monitoring",
+      serviceSiteSupport: "Support Site et Saisie de Données",
+      serviceTraining: "Formation"
     },
     404: {
       title: "Page non trouvée",
@@ -804,8 +806,10 @@ export const translations = {
       servicesTitle: "Services",
       serviceProjectManagement: "Project Management",
       serviceRegulatoryAffairs: "Regulatory Affairs",
+      serviceContractBudget: "Contract & Budget",
       serviceFeasibilityMonitoring: "Feasibility & Monitoring",
-      serviceLegalRepresentation: "Legal Representation EU"
+      serviceSiteSupport: "Site Support & Data Entry",
+      serviceTraining: "Training"
     },
     404: {
       title: "Page not found",

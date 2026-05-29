@@ -9,8 +9,8 @@ import 'swiper/css/effect-fade';
 import 'swiper/css/navigation';
 import { GreenWave, GreenWaveDivider, HeroWaveTop, HeroWaveBottom } from '../components/GreenWave';
 import LogoCarousel from '../components/LogoCarousel';
+import FloatingCTA from '../components/FloatingCTA';
 import SEO from '../components/SEO';
-import { Button } from '../components/ui/button';
 import { Card, CardContent } from '../components/ui/card';
 import {
   ClipboardList,
@@ -101,6 +101,7 @@ const Reveal = ({ children, className = '', variants = fadeUp, delay = 0 }) => (
 
 const HomePage = () => {
   const { t } = useLanguage();
+  const credibilityRef = useRef(null);
 
   const services = [
     { icon: ClipboardList, title: t('home.projectManagement'), desc: t('home.projectManagementDesc') },
@@ -150,7 +151,7 @@ const HomePage = () => {
           }}
           className="w-full h-full"
         >
-          {/* Slide 1 */}
+          {/* Slide 1 — Identité */}
           <SwiperSlide>
             <div
               className="absolute inset-0 bg-cover bg-center bg-no-repeat"
@@ -161,21 +162,21 @@ const HomePage = () => {
                 <div className="w-full sm:w-8/12 lg:w-7/12">
                   <div className="overflow-hidden">
                     <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 lg:mb-10">
-                      <span className="text-[#573D4E]">L’expertise au service de</span>{' '}<span className="text-[#2E9013]">la recherche clinique</span>
+                      <span className="text-[#573D4E]">CRO indépendante,</span>{' '}<span className="text-[#2E9013]">exigeante et humaine</span>
                     </h1>
                   </div>
                   <div className="overflow-hidden">
                     <p className="text-lg sm:text-xl md:text-2xl text-black font-medium leading-tight mb-10 lg:mb-14">
-                      Votre partenaire de confiance pour vos études cliniques de la phase I à la phase post-commercialisation.
+                      Freearcs Pharma Services accompagne biotechs, medtechs, laboratoires et promoteurs académiques dans la conduite de leurs études cliniques.
                     </p>
                   </div>
                   <div className="flex flex-wrap gap-4">
-                    <Link to="/contact" className="bg-[#2E9013] hover:bg-[#573D4E] text-white font-semibold px-6 py-3 rounded inline-flex items-center transition-colors">
-                      Discutez de votre projet
+                    <Link to="/contact" className="bg-[#2E9013] hover:bg-[#1f6b0d] text-white font-semibold px-6 py-3 rounded-full inline-flex items-center transition-colors">
+                      Discutons de votre projet
                       <ArrowRight className="ml-2 w-4 h-4" />
                     </Link>
-                    <Link to="/services" className="bg-[#F5A617] hover:bg-[#573D4E] text-white font-semibold px-6 py-3 rounded inline-flex items-center transition-colors">
-                      Nos Services
+                    <Link to="/services" className="border-2 border-[#2E9013] text-[#2E9013] bg-white/90 hover:bg-[#2E9013] hover:text-white font-semibold px-6 py-3 rounded-full inline-flex items-center transition-colors">
+                      Découvrir nos services
                       <ArrowRight className="ml-2 w-4 h-4" />
                     </Link>
                   </div>
@@ -195,7 +196,7 @@ const HomePage = () => {
                 <div className="w-full sm:w-8/12 lg:w-7/12">
                   <div className="overflow-hidden">
                     <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 lg:mb-10">
-                      <span className="text-[#573D4E]">Un périmètre complet</span>{' '}<span className="text-[#2E9013]">pour vos études cliniques.</span>
+                      <span className="text-[#573D4E]">Élargissons le choix thérapeutique</span>{' '}<span className="text-[#2E9013]">pour chaque patient.</span>
                     </h1>
                   </div>
                   <div className="overflow-hidden">
@@ -204,12 +205,12 @@ const HomePage = () => {
                     </p>
                   </div>
                   <div className="flex flex-wrap gap-4">
-                    <Link to="/contact" className="bg-[#2E9013] hover:bg-[#573D4E] text-white font-semibold px-6 py-3 rounded inline-flex items-center transition-colors">
-                      Discutez de votre projet
+                    <Link to="/contact" className="bg-[#2E9013] hover:bg-[#1f6b0d] text-white font-semibold px-6 py-3 rounded-full inline-flex items-center transition-colors">
+                      Discutons de votre projet
                       <ArrowRight className="ml-2 w-4 h-4" />
                     </Link>
-                    <Link to="/services" className="bg-[#F5A617] hover:bg-[#573D4E] text-white font-semibold px-6 py-3 rounded inline-flex items-center transition-colors">
-                      Nos Services
+                    <Link to="/services" className="border-2 border-[#2E9013] text-[#2E9013] bg-white/90 hover:bg-[#2E9013] hover:text-white font-semibold px-6 py-3 rounded-full inline-flex items-center transition-colors">
+                      Découvrir nos services
                       <ArrowRight className="ml-2 w-4 h-4" />
                     </Link>
                   </div>
@@ -229,21 +230,21 @@ const HomePage = () => {
                 <div className="w-full sm:w-8/12 lg:w-7/12">
                   <div className="overflow-hidden">
                     <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 lg:mb-10">
-                      <span className="text-[#573D4E]">Élargissons le choix thérapeutique</span>{' '}<span className="text-[#2E9013]">pour chaque patient.</span>
+                      <span className="text-[#573D4E]">Un périmètre complet</span>{' '}<span className="text-[#2E9013]">pour vos études cliniques.</span>
                     </h1>
                   </div>
                   <div className="overflow-hidden">
                     <p className="text-lg sm:text-xl md:text-2xl text-black font-medium leading-tight mb-10 lg:mb-14">
-                      Médicaments, dispositifs médicaux et produits hors santé. Études interventionnelles, observationnelles et de vie réelle (RWE).
+                      Médicaments, dispositifs médicaux et produits hors santé. Études interventionnelles, observationnelles et de vie réelle.
                     </p>
                   </div>
                   <div className="flex flex-wrap gap-4">
-                    <Link to="/contact" className="bg-[#2E9013] hover:bg-[#573D4E] text-white font-semibold px-6 py-3 rounded inline-flex items-center transition-colors">
-                      Discutez de votre projet
+                    <Link to="/contact" className="bg-[#2E9013] hover:bg-[#1f6b0d] text-white font-semibold px-6 py-3 rounded-full inline-flex items-center transition-colors">
+                      Discutons de votre projet
                       <ArrowRight className="ml-2 w-4 h-4" />
                     </Link>
-                    <Link to="/services" className="bg-[#F5A617] hover:bg-[#573D4E] text-white font-semibold px-6 py-3 rounded inline-flex items-center transition-colors">
-                      Nos Services
+                    <Link to="/services" className="border-2 border-[#2E9013] text-[#2E9013] bg-white/90 hover:bg-[#2E9013] hover:text-white font-semibold px-6 py-3 rounded-full inline-flex items-center transition-colors">
+                      Découvrir nos services
                       <ArrowRight className="ml-2 w-4 h-4" />
                     </Link>
                   </div>
@@ -277,25 +278,25 @@ const HomePage = () => {
           <div className="grid md:grid-cols-2 gap-16 items-start">
 
             <Reveal variants={fadeLeft} data-testid="what-we-do-section">
-              <div data-testid="what-we-do-section">
+              <div className="bg-white rounded-2xl p-10 shadow-sm border border-gray-100 h-full" data-testid="what-we-do-section">
                 <h2 className="font-raleway text-3xl font-bold text-[#573D4E] mb-2">
                   {t('home.whoWeAre')}
                 </h2>
                 <p className="text-[#2E9013] font-semibold italic mb-6">
                   {t('home.whoWeAreTagline')}
                 </p>
-                <p className="text-[#4B5563] mb-4 leading-relaxed">
+                <p className="text-[#4B5563] mb-4 leading-relaxed max-w-[480px]">
                   {t('home.whoWeAreText')}
                 </p>
-                <p className="text-[#4B5563] mb-8 leading-relaxed">
+                <p className="text-[#4B5563] mb-8 leading-relaxed max-w-[480px]">
                   {t('home.whoWeAreText2')}
                 </p>
                 <Link
                   to="/about"
-                  className="inline-flex items-center text-[#2E9013] hover:text-[#1a5a0b] font-medium"
+                  className="inline-flex items-center gap-2 border-2 border-[#2E9013] text-[#2E9013] hover:bg-[#2E9013] hover:text-white font-semibold px-6 py-2 rounded-full transition-colors"
                 >
                   {t('home.whoWeAreLink')}
-                  <ArrowRight className="ml-1 w-4 h-4" />
+                  <ArrowRight className="w-4 h-4" />
                 </Link>
               </div>
             </Reveal>
@@ -305,7 +306,7 @@ const HomePage = () => {
                 <h2 className="font-raleway text-3xl font-bold text-[#2E9013] mb-6">
                   {t('home.whatWeDo')}
                 </h2>
-                <ul className="space-y-3 relative z-10">
+                <ul className="space-y-4 relative z-10">
                   {Array.isArray(t('home.whatWeDoItems')) && t('home.whatWeDoItems').map((item, i) => (
                     <li key={i} className="flex items-start gap-3">
                       <span className="text-[#2E9013] font-bold text-base leading-relaxed flex-shrink-0">▸</span>
@@ -532,7 +533,7 @@ const HomePage = () => {
       </section> */}
 
       {/* ── References & Stats ───────────────────────────────────────────── */}
-      <section className="py-16 bg-white" data-testid="references-section">
+      <section ref={credibilityRef} className="py-16 bg-white" data-testid="references-section">
         <div className="max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-12 xl:px-20">
 
           <Reveal>
@@ -588,40 +589,16 @@ const HomePage = () => {
               className="text-center p-8 bg-white border border-gray-100 rounded-2xl"
             >
               <p className="text-4xl font-bold text-[#F5A617] mb-1 font-raleway">International</p>
-              <p className="text-xs uppercase tracking-widest text-[#F5A617]/60 font-semibold mb-2">Présence</p>
-              <p className="text-sm text-[#4B5563] leading-relaxed">France · Belgique · UK<br />Irlande · Suisse · Burkina-Faso</p>
+              <p className="text-xs uppercase tracking-widest text-[#F5A617]/60 font-semibold mb-2">Présence géographique</p>
+              <p className="text-sm text-[#4B5563] leading-relaxed">France / EU – Afrique Francophone</p>
             </motion.div>
           </motion.div>
 
         </div>
       </section>
 
-      {/* ── CTA ──────────────────────────────────────────────────────────── */}
-      <section className="py-16 bg-[#EAF5E1] mb-12 mx-4 sm:mx-8 lg:mx-16 rounded-3xl" data-testid="cta-section">
-        <div className="max-w-[900px] mx-auto px-6 sm:px-10 lg:px-8 text-center">
-          <Reveal>
-            <p className="font-raleway text-2xl sm:text-3xl font-bold text-[#573D4E] mb-3">
-              {t('home.scheduleTitle')}
-            </p>
-            <p className="font-raleway text-base text-[#4B5563] mb-10">
-              {t('home.scheduleSubtitle')}
-            </p>
-          </Reveal>
+      <FloatingCTA label="Discutons de votre projet" href="/contact" triggerRef={credibilityRef} />
 
-          <Reveal delay={0.15}>
-            <Button
-              asChild
-              className="w-full sm:w-auto bg-[#2E9013] hover:bg-[#1f6b0d] text-white font-semibold px-6 sm:px-10 py-4 sm:py-6 rounded-full text-base transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5"
-              data-testid="cta-contact"
-            >
-              <Link to="/contact" className="flex items-center justify-center">
-                {t('home.bookMeeting')}
-                <ArrowRight className="ml-2 w-4 h-4 flex-shrink-0" />
-              </Link>
-            </Button>
-          </Reveal>
-        </div>
-      </section>
     </div>
   );
 };
