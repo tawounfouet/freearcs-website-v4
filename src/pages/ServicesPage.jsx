@@ -182,7 +182,7 @@ const ServicesPage = () => {
   return (
     <div className="min-h-screen bg-[#F9FAFD]" data-testid="services-page">
       <SEO
-        title="Nos Services — Freearcs Pharma Services"
+        title="Nos Services"
         description="Six piliers de prestations CRO : gestion de projet, affaires réglementaires, contrat et budget, faisabilité et monitoring, support site et saisie de données, formation."
         url="/services"
       />

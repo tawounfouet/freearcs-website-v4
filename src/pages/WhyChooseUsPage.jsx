@@ -9,7 +9,7 @@ const WhyChooseUsPage = () => {
   return (
     <div className="min-h-screen bg-[#F9FAFD]" data-testid="why-choose-us-page">
       <SEO
-        title="Pourquoi choisir Freearcs Pharma Services | CRO française indépendante"
+        title="Pourquoi nous choisir ?"
         description="Une CRO française indépendante au service des biotechs, startups HealthTech et laboratoires pharmaceutiques. Expertise technique, proximité humaine et maîtrise réglementaire."
         url="/why-choose-us"
       />

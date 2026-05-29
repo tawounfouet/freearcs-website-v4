@@ -72,7 +72,7 @@ const TherapeuticExpertisePage = () => {
   return (
     <div className="min-h-screen bg-[#F9FAFD]" data-testid="therapeutic-expertise-page">
       <SEO
-        title="Expertise Thérapeutique — Oncologie, SNC, Maladies Rares | Freearcs Pharma Services"
+        title="Expertise Thérapeutique"
         description="Une CRO intervenant sur toutes les aires thérapeutiques. Études interventionnelles, observationnelles, épidémiologiques et données de vie réelles sur les médicaments, dispositifs médicaux et hors produits de santé."
         url="/therapeutic-expertise"
       />

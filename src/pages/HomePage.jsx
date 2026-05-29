@@ -131,7 +131,7 @@ const HomePage = () => {
   return (
     <div className="min-h-screen bg-white" data-testid="home-page">
       <SEO
-        title={t('home.heroTitleLine1') || t('home.heroTitle')}
+        title={t('home.metaTitle')}
         description={t('home.heroSubtitle')}
         url="/"
       />

@@ -20,6 +20,7 @@ export const translations = {
       heroTitleLine1: "CRO France -",
       heroTitleLine2: "Accompagnement expert",
       heroTitleLine3: " pour vos études cliniques de la Phase I à la post-commercialisation",
+      metaTitle: "CRO indépendante en recherche clinique",
       heroSubtitle: "Freearcs Pharma Services est une société de recherche clinique sous contrat (CRO) française accompagnant les laboratoires pharmaceutiques, biotechs, medtech et promoteurs académiques dans la conduite de leurs études cliniques — de la soumission réglementaire au monitoring de site et à la gestion des données. Alliant expertise réglementaire, exécution opérationnelle et flexibilité.",
       ctaDiscuss: "Discutez de votre projet",
       ctaExplore: "Découvrez nos services",
@@ -97,7 +98,7 @@ export const translations = {
     },
     about: {
       title: "Qui sommes-nous ? Freearcs Pharma Services, CRO française indépendante",
-      metaTitle: "Qui sommes-nous ? Freearcs Pharma Services, CRO française indépendante",
+      metaTitle: "Qui sommes-nous ?",
       metaDescription: "CRO française indépendante fondée en 2020 par Nadège KAMBOU. Vision, mission, valeurs et fondatrice. La rigueur des grandes CRO, l'agilité d'un partenaire de proximité.",
       heroTagline: "Une CRO indépendante au service de la recherche clinique.",
       intro: "Freearcs Pharma Services est une organisation de recherche sous contrat (CRO) qui accompagne les porteurs de projets en santé, notamment les biotechs, start-ups e-santé, medtechs, les laboratoires pharmaceutiques, les CROs internationales et locales, ainsi que les acteurs académiques, dans la stratégie et la conduite de leurs études cliniques.",
@@ -122,7 +123,7 @@ export const translations = {
     },
     founder: {
       title: "Nadège KAMBOU — Fondatrice et Directrice des Opérations",
-      metaTitle: "Nadège KAMBOU — Fondatrice, Freearcs Pharma Services",
+      metaTitle: "Notre Fondatrice — Nadège KAMBOU",
       metaDescription: "Nadège KAMBOU, fondatrice et directrice de Freearcs Pharma Services — 10 ans d'expérience dans la recherche clinique internationale.",
       intro: "Fondée par Nadège KAMBOU, Freearcs Pharma Services s'appuie sur plus de 10 ans d'expérience en recherche clinique internationale, acquise au sein de grandes CROs internationales.",
       text1: "Elle a contribué à des études majeures en oncologie, Alzheimer, pédiatrie et autres domaines complexes.",
@@ -138,7 +139,7 @@ export const translations = {
     },
     services: {
       title: "Services CRO — De la soumission réglementaire au monitoring de site",
-      metaTitle: "Services CRO — Gestion et suivi d'essais cliniques",
+      metaTitle: "Nos Services",
       metaDescription: "Gestion de projet, monitoring, affaires réglementaires, budget et soutien aux investigateurs : découvrez notre offre de services CRO adaptée à chaque promoteur.",
       intro: "Freearcs Pharma Services fournit un accompagnement complet à toutes les étapes des études cliniques pour les médicaments, dispositifs médicaux et produits non-santé — du développement précoce Phase I aux études post-commercialisation.",
       heroSubtitle: "Accompagnement complet des études cliniques, de la soumission réglementaire au monitoring de site — Phase I à IV.",
@@ -184,7 +185,7 @@ export const translations = {
     },
     legalRepresentation: {
       title: "Représentant Légal dans l'UE pour les Promoteurs Non-UE",
-      metaTitle: "Représentation Légale en Union Européenne — Freearcs Pharma Services",
+      metaTitle: "Représentation Légale dans l'UE",
       metaDescription: "Service de représentant légal en recherche clinique pour les promoteurs établis hors EEE. Conformité aux exigences réglementaires de l'UE et interlocuteur officiel des autorités.",
       heroSubtitle: "Représentation légale européenne pour les promoteurs non-UE, en conformité avec le règlement (UE) n°536/2014 et le MDR 745.",
       intro: "Freearcs Pharma Services agit en tant que Représentant Légal pour les promoteurs établis en dehors de l'Union européenne, assumant la responsabilité d'assurer que les études cliniques sont conduites en pleine conformité avec les exigences réglementaires et éthiques européennes applicables, ainsi qu'avec les obligations fixées par les autorités de santé compétentes.",
@@ -214,7 +215,7 @@ export const translations = {
     },
     therapeuticExpertise: {
       title: "Expertise Thérapeutique",
-      metaTitle: "Expertise thérapeutique — Oncologie, SNC, Maladies rares",
+      metaTitle: "Expertise Thérapeutique",
       metaDescription: "Oncologie, maladies rares, SNC, cardiologie, dermatologie : notre expertise couvre les domaines thérapeutiques les plus complexes de la recherche clinique.",
       oncology: {
         title: "Oncologie",
@@ -238,7 +239,7 @@ export const translations = {
     },
     whyChooseUs: {
       title: "Pourquoi Choisir Freearcs Pharma Services comme Partenaire CRO",
-      metaTitle: "Pourquoi choisir Freearcs Pharma Services",
+      metaTitle: "Pourquoi nous choisir ?",
       metaDescription: "CRO agile, indépendante et experte : proximité avec le client, maîtrise de la réglementation française et flexibilité opérationnelle au service de vos études cliniques.",
       intro: "Freearcs Pharma Services propose un modèle CRO flexible et piloté par l'expertise :",
       items: [
@@ -317,7 +318,7 @@ export const translations = {
     },
     blog: {
       title: "Blog — Actualités recherche clinique par Freearcs Pharma Services",
-      metaTitle: "Blog — Éclairages sur la recherche clinique | Freearcs Pharma Services",
+      metaTitle: "Blog — Éclairages sur la recherche clinique",
       metaDescription: "Veille réglementaire, méthodologie, retours d'expérience terrain et actualités de la recherche clinique — par Freearcs Pharma Services.",
       readMore: "Lire la suite",
       articles: [
@@ -352,7 +353,7 @@ export const translations = {
     },
     contact: {
       title: "Contact Freearcs Pharma Services — Discutez de votre étude clinique",
-      metaTitle: "Contact — Freearcs Pharma Services",
+      metaTitle: "Contact",
       metaDescription: "Discutez de votre projet clinique avec notre équipe. Études interventionnelles, observationnelles, RWE — nous vous accompagnons à chaque étape.",
       intro: "Contactez-nous pour discuter de votre projet clinique et découvrir comment Freearcs Pharma Services peut accompagner votre étude.",
       form: {
@@ -432,6 +433,7 @@ export const translations = {
       heroTitleLine1: "CRO France -",
       heroTitleLine2: "Expert Support",
       heroTitleLine3: " for Clinical Studies from Phase I to Post-Market",
+      metaTitle: "Independent CRO for Clinical Research",
       heroSubtitle: "Freearcs Pharma Services is a French contract research organization (CRO) supporting pharmaceutical companies, biotechs, medtech, and academic sponsors in the conduct of clinical studies — from regulatory submissions to site monitoring and data management. Combining regulatory expertise, operational execution, and flexibility.",
       ctaDiscuss: "Discuss Your Project",
       ctaExplore: "Explore Our Services",
@@ -506,7 +508,7 @@ export const translations = {
     },
     about: {
       title: "Freearcs Pharma Services - Independent French CRO",
-      metaTitle: "About - Independent Clinical CRO",
+      metaTitle: "About Us",
       metaDescription: "Founded by Nadège KAMBOU, Freearcs Pharma Services supports biotech, pharmaceutical and academic organisations in their clinical studies with rigour and proximity.",
       intro: "Freearcs Pharma Services is an independent French contract research organization (CRO) supporting partners in the conduct of clinical studies across a wide range of therapeutic areas and study types.",
       introText2: "The company operates with a flexible and structured model, ensuring high-quality execution and regulatory compliance. As a member of AFCROs, Freearcs Pharma Services delivers rigorous, traceable, and client-centred clinical research support.",
@@ -527,7 +529,7 @@ export const translations = {
     },
     founder: {
       title: "Nadège KAMBOU - Founder and Director of Operations",
-      metaTitle: "Nadège KAMBOU - Founder, Freearcs Pharma Services",
+      metaTitle: "Our Founder — Nadège KAMBOU",
       metaDescription: "Nadège KAMBOU, founder and director of Freearcs Pharma Services — 10 years of experience in international clinical research.",
       intro: "Founded by Nadège KAMBOU, Freearcs Pharma Services builds on over 10 years of international clinical research experience, gained at leading international CROs.",
       text1: "She has contributed to major studies in oncology, Alzheimer's, pediatrics and other complex areas.",
@@ -543,7 +545,7 @@ export const translations = {
     },
     services: {
       title: "CRO Services - From Regulatory Submission to Site Monitoring",
-      metaTitle: "CRO Services - Clinical Trial Management and Monitoring",
+      metaTitle: "Our Services",
       metaDescription: "Project management, monitoring, regulatory affairs, budget and investigator support: discover our CRO services tailored to every sponsor.",
       intro: "Freearcs Pharma Services provides comprehensive support across all stages of clinical studies for drugs, medical devices, and non-health products — from Phase I early development to post-marketing studies.",
       heroSubtitle: "Comprehensive clinical study support, from regulatory submission to site monitoring — Phase I to IV.",
@@ -589,7 +591,7 @@ export const translations = {
     },
     legalRepresentation: {
       title: "Legal Representative in the EU for Non-EU Sponsors",
-      metaTitle: "EU Legal Representative - Clinical Trials",
+      metaTitle: "Legal Representation in the EU",
       metaDescription: "Freearcs Pharma Services provides EU legal representation for non-EU sponsors, in compliance with Regulation (EU) No 536/2014 and MDR 745.",
       heroSubtitle: "EU legal representation for non-EU sponsors, in compliance with Regulation (EU) No 536/2014 and MDR 745.",
       intro: "Freearcs Pharma Services acts as Legal Representative for sponsors established outside the European Union, assuming responsibility for ensuring that clinical studies are conducted in full compliance with applicable European regulatory and ethical requirements, as well as with the obligations set forth by competent Health Authorities.",
@@ -619,7 +621,7 @@ export const translations = {
     },
     therapeuticExpertise: {
       title: "Therapeutic Expertise - Oncology, CNS, Rare Diseases and Beyond",
-      metaTitle: "Therapeutic Expertise - Oncology, CNS, Rare Diseases",
+      metaTitle: "Therapeutic Expertise",
       metaDescription: "Oncology, rare diseases, CNS, cardiology, dermatology: our expertise spans the most complex therapeutic areas in clinical research.",
       oncology: {
         title: "Oncology",
@@ -643,7 +645,7 @@ export const translations = {
     },
     whyChooseUs: {
       title: "Why Choose Freearcs Pharma Services as Your CRO Partner",
-      metaTitle: "Why Choose Freearcs Pharma Services",
+      metaTitle: "Why Choose Us?",
       metaDescription: "Agile, independent and expert CRO: client proximity, mastery of French regulations and operational flexibility at the service of your clinical studies.",
       intro: "Freearcs Pharma Services offers a flexible and expert-driven CRO model:",
       items: [
@@ -722,7 +724,7 @@ export const translations = {
     },
     blog: {
       title: "Blog - Clinical Research Insights by Freearcs Pharma Services",
-      metaTitle: "Blog - Clinical Research News in France",
+      metaTitle: "Blog — Clinical Research Insights",
       metaDescription: "Regulatory updates, CRO trends, ANSM fast-track procedure, decentralised trials: find our analyses and publications on clinical research.",
       readMore: "Read More",
       articles: [
@@ -757,7 +759,7 @@ export const translations = {
     },
     contact: {
       title: "Contact Freearcs Pharma Services — Discuss Your Clinical Study",
-      metaTitle: "Contact — Freearcs Pharma Services",
+      metaTitle: "Contact",
       metaDescription: "Discuss your clinical project with our team. Interventional, observational, RWE studies — we support you at every stage.",
       intro: "Contact us to discuss your clinical project and explore how Freearcs Pharma Services can support your study.",
       form: {
